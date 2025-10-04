@@ -1,0 +1,252 @@
+// Kaizen Life Component Styles
+// =============================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+// Dialog components
+.dialog-container {
+  @include backdrop;
+  @include flex-center;
+  z-index: $z-index-modal;
+}
+
+.dialog-content {
+  @include card($shadow-2xl, $border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  
+  @include slide-up(0.3s);
+}
+
+// Card components
+.kaizen-card {
+  @include card;
+  padding: $spacing-lg;
+  
+  &.elevated {
+    @include elevation(3);
+  }
+  
+  &.surface {
+    background-color: var(--mat-sys-surface-container);
+    color: var(--mat-sys-on-surface);
+  }
+}
+
+// Button components
+.kaizen-button {
+  @include button-reset;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-md;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.0892857143em;
+  transition: all $transition-base;
+  
+  &.primary {
+    background-color: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+    
+    &:hover {
+      @include elevation(2);
+    }
+  }
+  
+  &.secondary {
+    background-color: var(--mat-sys-secondary);
+    color: var(--mat-sys-on-secondary);
+    
+    &:hover {
+      @include elevation(2);
+    }
+  }
+  
+  &.outlined {
+    border: 1px solid var(--mat-sys-outline);
+    color: var(--mat-sys-primary);
+    
+    &:hover {
+      background-color: var(--mat-sys-primary-container);
+    }
+  }
+  
+  &.text {
+    color: var(--mat-sys-primary);
+    
+    &:hover {
+      background-color: var(--mat-sys-primary-container);
+    }
+  }
+  
+  &.icon {
+    padding: $spacing-sm;
+    border-radius: $border-radius-full;
+    width: 40px;
+    height: 40px;
+    @include flex-center;
+  }
+}
+
+// Form components
+.kaizen-form-field {
+  margin-bottom: $spacing-lg;
+  
+  label {
+    display: block;
+    font-weight: $font-weight-medium;
+    color: var(--mat-sys-on-surface-variant);
+    margin-bottom: $spacing-sm;
+    font-size: $font-size-sm;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: $spacing-md;
+    border: 1px solid var(--mat-sys-outline);
+    border-radius: $border-radius-sm;
+    background-color: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+    font-size: $font-size-base;
+    transition: border-color $transition-base;
+    
+    &:focus {
+      border-color: var(--mat-sys-primary);
+      outline: none;
+    }
+    
+    &:disabled {
+      background-color: var(--mat-sys-surface-variant);
+      opacity: $opacity-disabled;
+    }
+  }
+  
+  .error-message {
+    color: var(--mat-sys-error);
+    font-size: $font-size-sm;
+    margin-top: $spacing-xs;
+  }
+}
+
+// Navigation components
+.kaizen-nav {
+  background: var(--mat-sys-surface-container);
+  padding: $spacing-md 0;
+  
+  .nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+  
+  .nav-item {
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: $spacing-md $spacing-lg;
+      color: var(--mat-sys-on-surface);
+      text-decoration: none;
+      border-radius: $border-radius-md;
+      transition: background-color $transition-base;
+      
+      &:hover {
+        background-color: var(--mat-sys-primary-container);
+        color: var(--mat-sys-on-primary-container);
+      }
+      
+      &.active {
+        background-color: var(--mat-sys-secondary-container);
+        color: var(--mat-sys-on-secondary-container);
+      }
+    }
+  }
+}
+
+// Table components
+.kaizen-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--mat-sys-surface);
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  @include elevation(1);
+  
+  th {
+    background-color: var(--mat-sys-surface-variant);
+    color: var(--mat-sys-on-surface-variant);
+    font-weight: $font-weight-medium;
+    padding: $spacing-md $spacing-lg;
+    text-align: left;
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  td {
+    padding: $spacing-md $spacing-lg;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+    
+    &:last-child {
+      text-align: right;
+    }
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+  
+  tr:hover {
+    background-color: var(--mat-sys-surface-container-hover, rgba(0, 0, 0, 0.04));
+  }
+}
+
+// Badge components
+.kaizen-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-md;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  
+  &.primary {
+    background-color: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+  }
+  
+  &.secondary {
+    background-color: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+  }
+  
+  &.success {
+    background-color: var(--mat-sys-tertiary-container);
+    color: var(--mat-sys-on-tertiary-container);
+  }
+  
+  &.warning {
+    background-color: var(--mat-sys-error-container);
+    color: var(--mat-sys-on-error-container);
+  }
+}
+
+// Kaizen-specific Material overrides
+.kaizen-primary {
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+.kaizen-surface {
+  background-color: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface);
+}

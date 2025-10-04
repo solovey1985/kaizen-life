@@ -1,0 +1,31 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="sidenav" mode="over" fixedInViewport="true" #menu>
+    <button matIconButton class="sidenav-close-btn" (click)="menu.close()" aria-label="Close menu">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-nav-list class="nav-list">
+      <p>
+        <a mat-list-item routerLink="/categories" (click)="menu.close()"
+          >Категорії</a
+        >
+      </p>
+      <p>
+        <a mat-list-item routerLink="/profile" (click)="menu.close()"
+          >Налаштування</a
+        >
+      </p>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="top-toolbar">
+      <button matIconButton class="menu" (click)="menu.toggle()" aria-label="Toggle menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span style="width: 100%; text-align: center;"><a class="main-text-link" href="/">{{title()}}</a></span>
+    </mat-toolbar>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+    <app-bottom-navbar></app-bottom-navbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

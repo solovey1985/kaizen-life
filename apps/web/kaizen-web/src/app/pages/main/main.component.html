@@ -1,0 +1,33 @@
+<div class="page">
+  <div class="main-content">
+    <div class="metrics-row">
+      <mat-card class="metric-card health">
+        <div class="metric-icon">
+          <mat-icon>favorite</mat-icon>
+        </div>
+        <div class="metric-value">{{ userBalance.kp || 78 }}</div>
+      </mat-card>
+      <mat-card class="metric-card productivity">
+        <div class="metric-icon">
+          <mat-icon>show_chart</mat-icon>
+        </div>
+        <div class="metric-value">{{ userBalance.kz || 78 }}</div>
+      </mat-card>
+    </div>
+
+    <div class="actions-row">
+      <mat-card class="action-card" (click)="goToGoals()">
+        <div class="action-icon">
+          <mat-icon>navigation</mat-icon>
+        </div>
+        <div class="action-label">Цілі</div>
+      </mat-card>
+      <mat-card class="action-card" (click)="goToActions()">
+        <div class="action-icon">
+          <mat-icon>list</mat-icon>
+        </div>
+        <div class="action-label">Дії</div>
+      </mat-card>
+    </div>
+  </div>
+

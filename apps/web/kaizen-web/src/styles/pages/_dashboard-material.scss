@@ -1,0 +1,285 @@
+// Dashboard Page Styles - Material Design with Kaizen theme
+// Using Ukrainian primary language and Material Design components
+
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.dashboard-wrapper {
+  min-height: 100vh;
+  background: var(--mat-sys-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  .spacer {
+    flex: 1 1 auto;
+  }
+}
+.dashboard-header {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--mat-sys-elevation-2);
+  min-height: 64px;
+  
+  .header-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.0125em;
+  }
+  
+  .hamburger-menu {
+    background: none;
+    border: none;
+    color: var(--mat-sys-on-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: var(--mat-sys-primary-container);
+    }
+    
+    mat-icon {
+      font-size: 24px;
+    }
+  }
+}
+
+// Main content
+.dashboard-content {
+  flex: 1;
+  padding: 24px;
+  max-width: 428px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+// Material Cards for metrics
+.metrics-section {
+  margin-bottom: 32px;
+  
+  .metrics-icons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 24px;
+    
+    .metric-icon {
+      width: 80px;
+      height: 72px;
+      background: var(--mat-sys-surface-container-high);
+      border: 2px solid var(--mat-sys-outline-variant);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--mat-sys-elevation-1);
+      
+      mat-icon {
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+        color: var(--mat-sys-primary);
+      }
+    }
+  }
+  
+  .metrics-values {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    
+    .metric-card {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      box-shadow: var(--mat-sys-elevation-3);
+      padding: 0;
+      
+      mat-card-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        padding: 0 !important;
+        color: var(--mat-sys-on-primary);
+        font-size: 2.5rem;
+        font-weight: 500;
+        font-family: 'Roboto', sans-serif;
+      }
+      
+      &.kp-card {
+        background: #d32f2f; // Red for productivity
+      }
+      
+      &.kz-card {
+        background: #1976d2; // Blue for health
+      }
+    }
+  }
+}
+
+// Material buttons for actions
+.actions-section {
+  margin-bottom: 32px;
+  
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    
+    .action-btn {
+      background: var(--mat-sys-surface-container-high);
+      border: 1px solid var(--mat-sys-outline);
+      border-radius: 20px;
+      padding: 12px 24px;
+      color: var(--mat-sys-primary);
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Roboto', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      min-width: 88px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &:hover {
+        background: var(--mat-sys-primary-container);
+        color: var(--mat-sys-on-primary-container);
+        border-color: var(--mat-sys-primary);
+        text-decoration: none;
+        transform: translateY(-1px);
+        box-shadow: var(--mat-sys-elevation-2);
+      }
+      
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// Material Design Bottom App Bar
+.bottom-navigation {
+  background: var(--mat-sys-primary);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: var(--mat-sys-elevation-3);
+  min-height: 80px;
+  
+  .nav-item {
+    background: none;
+    border: 2px solid var(--mat-sys-on-primary);
+    border-radius: 50%;
+    color: var(--mat-sys-on-primary);
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+      background: var(--mat-sys-primary-container);
+      transform: translateY(-2px);
+    }
+    
+    &.add-action {
+      background: var(--mat-sys-primary-container);
+      border-color: var(--mat-sys-on-primary-container);
+      
+      mat-icon {
+        font-size: 28px;
+        font-weight: 500;
+      }
+    }
+    
+    mat-icon {
+      font-size: 24px;
+    }
+  }
+}
+
+// Mobile responsive
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 20px 16px;
+  }
+  
+  .metrics-section {
+    .metrics-icons {
+      gap: 32px;
+      
+      .metric-icon {
+        width: 72px;
+        height: 64px;
+        
+        mat-icon {
+          font-size: 28px;
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
+    
+    .metrics-values {
+      gap: 32px;
+      
+      .metric-card {
+        width: 72px;
+        height: 72px;
+        font-size: 2rem;
+      }
+    }
+  }
+  
+  .actions-section {
+    .action-buttons {
+      flex-direction: column;
+      gap: 12px;
+      
+      .action-btn {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+    }
+  }
+  
+  .bottom-navigation {
+    padding: 12px 16px;
+    
+    .nav-item {
+      width: 48px;
+      height: 48px;
+      
+      mat-icon {
+        font-size: 20px;
+      }
+      
+      &.add-action mat-icon {
+        font-size: 24px;
+      }
+    }
+  }
+}

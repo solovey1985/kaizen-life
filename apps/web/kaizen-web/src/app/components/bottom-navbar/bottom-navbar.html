@@ -1,0 +1,16 @@
+<nav class="main-bottom-nav">
+	<button mat-fab class="nav-btn" (click)="openCharts.emit()">
+		<mat-icon>pie_chart</mat-icon>
+	</button>
+	<button
+		mat-fab
+		class="nav-btn nav-btn-center"
+		color="primary"
+		(click)="addAction()"
+	>
+		<mat-icon>add</mat-icon>
+	</button>
+	<button mat-fab class="nav-btn" (click)="goToGoals.emit()">
+		<mat-icon>navigation</mat-icon>
+	</button>
+</nav>

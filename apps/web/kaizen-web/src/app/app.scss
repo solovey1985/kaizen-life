@@ -1,0 +1,66 @@
+@use "../styles/styles";
+
+.sidenav-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.main-text-link {
+  align-self: center;
+  text-decoration: none;
+  color: yellow;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  font-family: "Noto Sans", sans-serif;
+}
+.top-toolbar {
+  height: 64px;
+  background-color: lightskyblue;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.sidenav {
+  width: 30%;
+  background-color: azure;
+  border-radius: 12px;
+}
+.nav-list {
+  padding-left: 10%;
+  list-style-type: none;
+  margin-top: 20%;
+  a {
+    text-decoration: none;
+    color: lightseagreen;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 32px;
+    font-family: "Noto Sans", sans-serif;
+    &:hover {
+      color: #0d99ff;
+    }
+  }
+}
+
+.menu {
+  margin-right: 10px;
+  color: lightseagreen;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 38px;
+}

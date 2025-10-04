@@ -1,0 +1,92 @@
+// Kaizen Life Application Styles
+// ==============================
+// Organized structure following CSS architecture best practices
+
+// 1. Variables and configuration
+@use "variables";
+
+// 2. Mixins and functions
+@use "mixins";
+
+// 3. Base styles and resets
+
+@use "base";
+@use "typography";
+
+// 4. Layout systems
+@use "layouts";
+
+// 5. Reusable components
+@use "components";
+
+// 6. Page-specific styles
+@use "./pages/page";
+@use "./pages/login";
+@use "./pages/login-material";
+@use "./pages/dashboard";
+@use "./pages/dashboard-material";
+@use "./pages/dialogs";
+
+// 7. Angular Material theme configuration
+@use "@angular/material" as mat;
+@use "@angular/cdk" as cdk;
+
+// Include Material Design core
+@include mat.core();
+
+// Define custom Kaizen theme
+$kaizen-primary: mat.m2-define-palette(mat.$m2-blue-palette);
+$kaizen-accent: mat.m2-define-palette(mat.$m2-amber-palette);
+
+$kaizen-theme: mat.define-theme(
+  (
+    color: (
+      primary: mat.$violet-palette,
+      tertiary: mat.$orange-palette,
+      theme-type: light,
+    ),
+    typography: (
+      plain-family: Roboto,
+      brand-family: Open Sans,
+      bold-weight: 900,
+      medium-weight: 500,
+      regular-weight: 300,
+    ),
+    density: (
+      scale: 0
+    ),
+  )
+);
+
+// Apply Material theme
+@include mat.all-component-themes($kaizen-theme);
+@include cdk.overlay();
+
+// Material Design toolbar customization
+$kaizen-toolbar-bg: mat.m2-get-color-from-palette($kaizen-primary, 500);
+$kaizen-toolbar-text: mat.m2-get-color-from-palette($kaizen-accent, 500);
+
+:root {
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: $kaizen-toolbar-bg,
+      container-text-color: $kaizen-toolbar-text,
+    )
+  );
+}
+
+// Apply theme to html element
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: $kaizen-primary,
+        tertiary: $kaizen-accent,
+      ),
+      typography: Roboto,
+      density: (
+        scale: 0
+      ),
+    )
+  );
+}

@@ -1,0 +1,84 @@
+// Add Goal Dialog Styles
+// Following the same pattern as add-action-log
+
+.dialog-container {
+    @extend .dialog-container;
+}
+
+.dialog-content {
+    @extend .dialog-content;
+    min-width: 500px;
+    max-width: 600px;
+    
+    mat-card {
+        margin: 0;
+        box-shadow: none;
+    }
+}
+
+.dialog-content-form {
+    @extend .dialog-content-form;
+    gap: 16px;
+    
+    mat-form-field {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+}
+
+// Form layout helpers
+.form-row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    
+    .half-width {
+        flex: 1;
+    }
+}
+
+// Custom styles for goal dialog
+.goal-form {
+    .mat-mdc-form-field {
+        margin-bottom: 16px;
+    }
+    
+    .mat-mdc-card-actions {
+        padding: 16px 24px;
+        margin: 0;
+    }
+}
+
+// Responsive design
+@media (max-width: 600px) {
+    .dialog-content {
+        min-width: 90vw;
+        max-width: 90vw;
+        margin: 16px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+// Enhanced form styling
+mat-form-field {
+    &.ng-invalid.ng-touched {
+        .mat-mdc-form-field-outline {
+            color: var(--mat-sys-error);
+        }
+    }
+}
+
+// Button styling
+mat-card-actions {
+    button {
+        margin-left: 8px;
+        
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}

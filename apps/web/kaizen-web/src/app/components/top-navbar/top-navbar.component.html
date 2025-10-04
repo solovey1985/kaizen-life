@@ -1,0 +1,21 @@
+
+<mat-drawer-container class="main-header-container">
+  <mat-drawer #mainDrawer mode="over" position="start">
+    <button mat-icon-button (click)="closeMenu()" aria-label="Close menu">
+      <mat-icon>close</mat-icon>
+    </button>
+    <ng-content select="[drawer-nav]">
+      <h1>Menu</h1>
+      <p>Navigation items go here</p>
+    </ng-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar [color]="" class="main-header" color="primary">
+      <button mat-icon-button class="main-menu-btn" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="main-title">Kaizen Life</span>
+    </mat-toolbar>
+  </mat-drawer-content>
+</mat-drawer-container>

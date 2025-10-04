@@ -1,0 +1,2 @@
+Original file: g:\Projects\kaizen-life\apps\web\templates\assets\img\background\background-2.jpg
+Please copy the binary image into this path so CSS background-image references work in the app.

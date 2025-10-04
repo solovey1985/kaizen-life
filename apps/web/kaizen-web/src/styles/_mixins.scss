@@ -1,0 +1,140 @@
+// Kaizen Life Design System Mixins
+// =================================
+
+@use "variables" as *;
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (min-width: $breakpoint-xs) { @content; }
+  } @else if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  } @else if $breakpoint == xxl {
+    @media (min-width: $breakpoint-xxl) { @content; }
+  }
+}
+
+// Card component mixin
+@mixin card($shadow: $shadow-md, $radius: $border-radius-lg) {
+  background: white;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  overflow: hidden;
+}
+
+// Button reset mixin
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+  
+  &:focus {
+    outline: 2px solid var(--mat-sys-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Flex center mixin
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Full viewport height mixin
+@mixin full-height {
+  min-height: 100vh;
+  height: 100%;
+}
+
+// Text truncation mixin
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Gradient background mixin
+@mixin gradient-bg($start: $kaizen-primary, $end: $kaizen-accent, $direction: 135deg) {
+  background: linear-gradient($direction, $start 0%, $end 100%);
+}
+
+// Hover effect mixin
+@mixin hover-effect($property: background-color, $value: rgba(255, 255, 255, 0.1)) {
+  transition: #{$property} $transition-base;
+  
+  &:hover {
+    #{$property}: $value;
+  }
+}
+
+// Material Design elevation mixin
+@mixin elevation($level) {
+  @if $level == 1 {
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+                0 1px 1px 0 rgba(0, 0, 0, 0.14),
+                0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  } @else if $level == 2 {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  } @else if $level == 3 {
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2),
+                0 3px 4px 0 rgba(0, 0, 0, 0.14),
+                0 1px 8px 0 rgba(0, 0, 0, 0.12);
+  } @else if $level == 4 {
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+                0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+// Animation mixins
+@mixin slide-up($duration: 0.6s) {
+  animation: slideUp $duration ease-out;
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@mixin fade-in($duration: 0.3s) {
+  animation: fadeIn $duration ease-out;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+// Backdrop mixin
+@mixin backdrop($opacity: $opacity-backdrop) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, $opacity);
+  z-index: $z-index-modal-backdrop;
+}

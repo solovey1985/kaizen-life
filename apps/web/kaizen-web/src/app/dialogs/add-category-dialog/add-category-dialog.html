@@ -1,0 +1,95 @@
+<div class="dialog-container" (click)="onOverlayClick($event)">
+    <div class="dialog-content">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Додати категорію</mat-card-title>
+            </mat-card-header>
+            
+            <mat-card-content>
+                <form (ngSubmit)="onSubmit()" class="dialog-content-form" [formGroup]="form">
+                    <!-- Category Name -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Назва категорії</mat-label>
+                        <input
+                            matInput
+                            formControlName="name"
+                            type="text"
+                            required
+                            placeholder="Введіть назву категорії"
+                        />
+                        @if (hasError('name', 'required')) {
+                            <mat-error>
+                                Назва є обов'язковою
+                            </mat-error>
+                        }
+                        @if (hasError('name', 'minlength')) {
+                            <mat-error>
+                                Назва повинна містити принаймні 2 символи
+                            </mat-error>
+                        }
+                    </mat-form-field>
+
+                    <!-- Description -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Опис</mat-label>
+                        <textarea
+                            matInput
+                            formControlName="description"
+                            placeholder="Введіть опис категорії (необов'язково)"
+                            rows="3"
+                        ></textarea>
+                        <mat-hint>Детальний опис категорії</mat-hint>
+                    </mat-form-field>
+
+                    <!-- Category Type -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Тип категорії</mat-label>
+                        <mat-select formControlName="type" required>
+                            @for (type of categoryTypes; track type) {
+                                <mat-option [value]="type">
+                                    {{ type }}
+                                </mat-option>
+                            }
+                        </mat-select>
+                        @if (hasError('type', 'required')) {
+                            <mat-error>
+                                Тип категорії є обов'язковим
+                            </mat-error>
+                        }
+                        <mat-hint>Виберіть тип категорії</mat-hint>
+                    </mat-form-field>
+
+                    <!-- Orientation Type -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Орієнтація</mat-label>
+                        <mat-select formControlName="orientation" required>
+                            @for (orientation of orientationTypes; track orientation) {
+                                <mat-option [value]="orientation">
+                                    {{ orientation }}
+                                </mat-option>
+                            }
+                        </mat-select>
+                        @if (hasError('orientation', 'required')) {
+                            <mat-error>
+                                Орієнтація є обов'язковою
+                            </mat-error>
+                        }
+                        <mat-hint>Виберіть орієнтацію категорії</mat-hint>
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+
+            <mat-card-actions align="end">
+                <button mat-button (click)="closeDialog()">Скасувати</button>
+                <button 
+                    mat-raised-button 
+                    color="primary" 
+                    (click)="onSubmit()"
+                    [disabled]="form.invalid"
+                >
+                    Зберегти категорію
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

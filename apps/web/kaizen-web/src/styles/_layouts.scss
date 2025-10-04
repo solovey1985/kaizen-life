@@ -1,0 +1,144 @@
+// Kaizen Life Layout Styles
+// ==========================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+// Main page layout
+.page {
+  @include full-height;
+  display: flex;
+  flex-direction: column;
+  
+  .main-content {
+    padding: 0 10%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    @include respond-to(md) {
+      padding: 0 $spacing-lg;
+    }
+    
+    @include respond-to(sm) {
+      padding: 0 $spacing-md;
+    }
+  }
+}
+
+// Dashboard layout
+.dashboard-wrapper {
+  @include full-height;
+  background: var(--mat-sys-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  padding: $spacing-md $spacing-lg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include elevation(2);
+  min-height: 64px;
+  
+  .header-title {
+    font-family: $font-family-primary;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-medium;
+    margin: 0;
+    letter-spacing: 0.0125em;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .hamburger-menu {
+    @include button-reset;
+    color: var(--mat-sys-on-primary);
+    padding: $spacing-sm;
+    border-radius: $border-radius-full;
+    width: 40px;
+    height: 40px;
+    @include flex-center;
+    @include hover-effect(background-color, var(--mat-sys-primary-container));
+  }
+}
+
+// Container layouts
+.container {
+  width: 100%;
+  padding-right: $spacing-md;
+  padding-left: $spacing-md;
+  margin-right: auto;
+  margin-left: auto;
+  
+  @include respond-to(sm) {
+    max-width: $container-sm;
+  }
+  
+  @include respond-to(md) {
+    max-width: $container-md;
+  }
+  
+  @include respond-to(lg) {
+    max-width: $container-lg;
+  }
+  
+  @include respond-to(xl) {
+    max-width: $container-xl;
+  }
+  
+  @include respond-to(xxl) {
+    max-width: $container-xxl;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: $spacing-md;
+  padding-left: $spacing-md;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// Grid system
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$spacing-sm;
+  margin-left: -$spacing-sm;
+}
+
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding-right: $spacing-sm;
+  padding-left: $spacing-sm;
+}
+
+// Login layout
+.login-wrapper {
+  @include full-height;
+  @include gradient-bg(var(--mat-sys-primary), var(--mat-sys-primary-container));
+  @include flex-center;
+  padding: $spacing-lg;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card {
+  @include card(var(--mat-sys-elevation-3), $border-radius-3xl);
+  background: var(--mat-sys-surface);
+  padding: $spacing-2xl $spacing-xl;
+  text-align: center;
+  @include slide-up;
+}

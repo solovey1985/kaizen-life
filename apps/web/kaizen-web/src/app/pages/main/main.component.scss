@@ -1,0 +1,128 @@
+// Main mockup layout and styles
+.main-mockup-wrapper {
+  min-height: 100vh;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  background: #009688;
+  color: #fff;
+  font-family: "Lucida Console", monospace;
+  font-size: 2rem;
+  .main-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-left: 16px;
+    letter-spacing: 2px;
+  }
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 32px 0 0 0;
+}
+
+.metrics-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.metric-card {
+  width: 120px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  .metric-icon {
+    font-size: 2.8rem;
+    margin-bottom: 8px;
+  }
+  .metric-value {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 4px;
+    border-radius: 8px;
+    padding: 0 12px;
+    background: transparent;
+  }
+}
+.metric-card.health {
+  background: #b71c1c;
+  .metric-value {
+    background: #b71c1c;
+  }
+  .metric-icon mat-icon {
+    color: #b71c1c;
+    background: #fff;
+    border-radius: 50%;
+	padding: 0px 1px;
+  }
+}
+.metric-card.productivity {
+  background: #0097a7;
+  .metric-value {
+    background: #0097a7;
+  }
+  .metric-icon mat-icon {
+    color: #0097a7;
+    background: #fff;
+    border-radius: 50%;
+  }
+}
+
+.actions-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.action-card {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #009688;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  .action-icon {
+    font-size: 2.4rem;
+    color: #009688;
+    margin-bottom: 8px;
+  }
+  .action-label {
+    font-size: 1.2rem;
+    color: #009688;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 600px) {
+  .metrics-row,
+  .actions-row {
+    gap: 16px;
+  }
+  .metric-card,
+  .action-card {
+    width: 100px;
+    height: 100px;
+  }
+}

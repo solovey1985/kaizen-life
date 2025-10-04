@@ -1,0 +1,33 @@
+<div class="login-wrapper">
+  <div class="login-container">
+    <mat-card class="login-card">
+      <!-- Kaizen Life Branding -->
+      <mat-card-content>
+        <h1 class="login-title">Kaizen Life</h1>
+        <p class="login-subtitle">Життя в стилі кайдзен</p>
+
+        <!-- Google Authentication Section -->
+        <div class="google-auth-section" [class.loading]="isLoading">
+          <button
+            mat-raised-button
+            class="google-btn"
+            (click)="loginWithGoogle()"
+            [disabled]="isLoading"
+          >
+            <span class="google-icon">G</span>
+            <span>{{ isLoading ? "Signing in..." : 'Lgin with Google' }}</span>
+            @if (isLoading){ <mat-spinner diameter="20"></mat-spinner>}
+          </button>
+        </div>
+
+        <!-- Error Message -->
+        @if (errorMessage) {
+            <div class="error-message">
+                <mat-icon>error</mat-icon>
+                {{ errorMessage }}
+            </div>
+        }
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
