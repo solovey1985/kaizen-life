@@ -1,0 +1,25 @@
+{
+  "name": "kaizen-life",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build:shared": "npm run -w @kaizen/shared build",
+    "build:functions": "npm run -w kaizen-functions build",
+    "build:all": "npm run build:shared && npm run build:functions",
+    "start:functions": "npm run -w kaizen-functions serve",
+    "test:functions": "npm run -w kaizen-functions test",
+    "lint": "eslint . --ext .ts,.js,.html",
+    "lint:fix": "eslint . --ext .ts,.js,.html --fix",
+    "lint:web": "npm run -w kaizen-web lint",
+    "lint:web:fix": "npm run -w kaizen-web lint:fix"
+  },
+  "devDependencies": {
+    "@angular-eslint/builder": "^20.3.0",
+    "@angular-eslint/schematics": "^20.3.0",
+    "eslint": "^8.57.0"
+  }
+}

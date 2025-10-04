@@ -1,0 +1,17 @@
+{
+  "name": "@kaizen/shared",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "zod": "^3.21.4"
+  }
+}

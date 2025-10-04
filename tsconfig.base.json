@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@kaizen/shared": ["packages/shared/src"],
+      "@kaizen/shared/*": ["packages/shared/src/*"]
+    }
+  }
+}
