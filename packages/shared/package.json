@@ -5,8 +5,13 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -b",
-    "clean": "rimraf dist"
+    "build:watch": "tsc -b -w",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "typescript": "^5.0.0",
     "rimraf": "^3.0.2"

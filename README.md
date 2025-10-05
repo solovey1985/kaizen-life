@@ -37,7 +37,8 @@ npm install
 ## Documentation
 
 - **[📚 Emulators Guide](EMULATORS.md)** - Complete guide for running, updating, and working with Firebase emulators
-- **[📋 Documentation Index](docs/README.md)** - Complete index of all project documentation
+- **[� Functions Debugging](docs/DEBUGGING.md)** - Firebase Functions debugging methods and VS Code setup
+- **[�📋 Documentation Index](docs/README.md)** - Complete index of all project documentation
 - **[🏗️ Project Structure](docs/project-structure.md)** - Repository layout and architecture (coming soon)
 - **[🔧 Development Guide](docs/development.md)** - Development workflow and best practices (coming soon)
 
@@ -53,6 +54,8 @@ npm install
 | Documentation | Purpose | Target Audience |
 |---------------|---------|-----------------|
 | [EMULATORS.md](EMULATORS.md) | Firebase emulator setup and usage | All developers |
+| [DEBUGGING.md](docs/DEBUGGING.md) | Functions debugging and VS Code setup | Backend developers |
+| [ENVIRONMENT.md](functions/ENVIRONMENT.md) | Functions environment variables | Backend developers |
 | [Styles README](apps/web/kaizen-web/src/styles/README.md) | CSS architecture and design patterns | Frontend developers |
 | [Services README](apps/web/kaizen-web/src/app/services/README.md) | Angular services and data management | Frontend developers |
 | [Validators README](packages/shared/src/validators/README.md) | Shared validation schemas | All developers |

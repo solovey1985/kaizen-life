@@ -7,6 +7,8 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare:shared": "powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/prepare-shared.ps1",
+    "prepare:shared:quiet": "powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/prepare-shared.ps1 -Quiet",
     "build:shared": "npm run -w @kaizen/shared build",
     "build:functions": "npm run -w kaizen-functions build",
     "build:all": "npm run build:shared && npm run build:functions",

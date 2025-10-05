@@ -27,6 +27,7 @@
   },
   "private": true,
   "dependencies": {
+    "@kaizen/shared": "file:./vendor/@kaizen-shared.tgz",
     "@angular/cdk": "~20.2.4",
     "@angular/common": "^20.1.0",
     "@angular/compiler": "^20.1.0",

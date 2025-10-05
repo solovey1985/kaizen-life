@@ -5,16 +5,25 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "serve": "npm run build && firebase emulators:start --only functions",
+    "serve:env": "npm run build && NODE_ENV=development firebase emulators:start --only functions",
+    "debug": "npm run build && firebase emulators:start --only functions --inspect-functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "deploy:config": "firebase functions:config:get > .runtimeconfig.json && firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "config:get": "firebase functions:config:get",
+    "config:set": "firebase functions:config:set"
   },
   "engines": {
     "node": "22"
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@kaizen/shared": "file:./vendor/@kaizen-shared.tgz",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "firebase-admin": "^12.6.0",
     "firebase-functions": "^6.0.1"
   },

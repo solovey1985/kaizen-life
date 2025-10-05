@@ -49,6 +49,7 @@
         "*.local"
       ],
       "predeploy": [
+        "powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/prepare-shared.ps1",
         "npm --prefix \"$RESOURCE_DIR\" run lint",
         "npm --prefix \"$RESOURCE_DIR\" run build"
       ]

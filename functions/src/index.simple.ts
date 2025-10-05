@@ -2,7 +2,6 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import express from "express";
 import cors from "cors";
-import { ActionApiModel, type UserAction } from "@kaizen/shared";
 
 // Simple initialization without complex environment loading
 admin.initializeApp();
@@ -11,11 +10,10 @@ const db = admin.firestore();
 const app = express();
 
 // Simple CORS setup for development
-console.log('ENV: ' + JSON.stringify(process.env));
 const isDev = process.env.NODE_ENV === "development" || process.env.FUNCTIONS_EMULATOR === "true";
 const corsOrigin = isDev ? "http://localhost:5000" : false;
 
-app.use(cors({
+app.use(cors({ 
   origin: corsOrigin,
   credentials: true
 }));
@@ -31,19 +29,20 @@ const logger = {
   },
   warn: (message: string, data?: any) => console.warn(`⚠️  ${message}`, data || ""),
   error: (message: string, error?: any) => console.error(`❌ ${message}`, error || "")
-};// Example: get balance
+};
+
+// Example: get balance
 app.get("/balance/:userId", async (req, res) => {
-  logger.info("Db instance created", { db: !!db });
   const { userId } = req.params;
   logger.info("🔍 GET /balance/:userId called", { userId });
-
+  
   try {
     const userDoc = await db.collection("users").doc(userId).get();
     if (!userDoc.exists) {
       logger.warn("❌ User not found", { userId });
       return res.status(404).send("User not found");
     }
-
+    
     const userData = userDoc.data();
     logger.info("✅ Balance retrieved successfully", { userId, balance: userData });
     return res.json(userData);
@@ -56,11 +55,11 @@ app.get("/balance/:userId", async (req, res) => {
 app.post("/category", async (req, res) => {
   const { name, userId } = req.body;
   logger.info("📝 POST /category called", { name, userId });
-
+  
   try {
     const category = { userId, name, createdAt: new Date().toISOString() };
     const docRef = await db.collection("categories").add(category);
-
+    
     logger.info("✅ Category created successfully", { categoryId: docRef.id, category });
     return res.json({ success: true, categoryId: docRef.id });
   } catch (error) {
@@ -69,50 +68,76 @@ app.post("/category", async (req, res) => {
   }
 });
 
-app.get("/category/:categoryId", async (req, res) => {
-  const { categoryId: categoryId } = req.params;
-  logger.info("🔍 GET /categories/:categoryId called", { categoryId });
-  try {
-    // getbyDocumnetId 
-    const categoryDoc = await db.collection("categories").doc(categoryId).get();
-    if (!categoryDoc.exists) {
-      logger.warn("❌ Category not found", { categoryId });
-      return res.status(404).send("Category not found");
-    }
-
-    const categoryData = categoryDoc.data();
-    logger.info("✅ Category retrieved successfully", { categoryId, categoryData });
-    return res.json(categoryData);
-  } catch (error) {
-    logger.error("❌ Error retrieving category", error);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-
 app.post("/actions/add", async (req, res) => {
   logger.info("🚀 POST /actions/add called", { body: req.body });
-  const action = req.body as ActionApiModel;
-  logger.debug("📝 Extracted action", action);
-
+  
+  const { userId, actionTypeId, amount } = req.body;
+  logger.debug("📝 Extracted params", { userId, actionTypeId, amount });
+  
   try {
-    logger.debug("📋 Creating action", action);
-    await db.collection("userActions").add(action);
+    const actionTypeDoc = await db
+      .collection("actionTypes")
+      .doc(actionTypeId)
+      .get();
+      
+    if (!actionTypeDoc.exists) {
+      logger.warn("❌ ActionType not found", { actionTypeId });
+      return res.status(404).send("ActionType not found");
+    }
+
+    const actionType = actionTypeDoc.data();
+    logger.debug("✅ Found actionType", actionType);
+    
+    if (!actionType) {
+      logger.error("❌ ActionType data unavailable");
+      return res.status(500).send("ActionType data unavailable");
+    }
+    
+    const credits = amount * actionType.creditValue;
+    logger.info("💰 Calculated credits", { amount, creditValue: actionType.creditValue, credits });
+
+    // Create userAction log
+    const userAction = {
+      userId,
+      actionTypeId,
+      amount,
+      calculatedCredits: credits,
+      date: new Date().toISOString(),
+    };
+    
+    logger.debug("📋 Creating userAction", userAction);
+    await db.collection("userActions").add(userAction);
+
+    // Update balance transaction
+    logger.info("🔄 Starting balance update transaction", { userId });
+    const userRef = db.collection("users").doc(userId);
+    
     await db.runTransaction(async (t) => {
-      const actionRef = db.collection("actions").add(action);
+      const userDoc = await t.get(userRef);
+      if (!userDoc.exists) throw new Error("User not found");
+
+      const balance = userDoc.data() || { balanceKP: 0, balanceKZ: 0 };
+      logger.debug("💼 Current balance", balance);
+      
+      if (actionType.type === "KP") {
+        balance.balanceKP += credits;
+      } else {
+        balance.balanceKZ += credits;
+      }
+
+      logger.debug("💼 New balance", balance);
+      t.update(userRef, balance);
     });
-
-    logger.info("✅ Transaction completed successfully", { action });
-    return res.json({ success: true, action });
-
+    
+    logger.info("✅ Transaction completed successfully", { userId, credits });
+    return res.json({ success: true, credits });
+    
   } catch (error) {
     logger.error("❌ Transaction failed", error);
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return res.status(500).json({ error: "Transaction failed", details: errorMessage });
   }
 });
-
-
 
 // Export API
 exports.api = functions.https.onRequest(app);

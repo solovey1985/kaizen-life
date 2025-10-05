@@ -1,0 +1,1 @@
+{"version":3,"file":"actionApiModel.d.ts","sourceRoot":"","sources":["../../../src/models/api/actionApiModel.ts"],"names":[],"mappings":"AAGA,KAAK,eAAe,GAAG,SAAS,GAAG,OAAO,GAAG,YAAY,GAAG,WAAW,CAAC;AAExE,MAAM,WAAW,cAAc;IAC3B,EAAE,EAAE,MAAM,CAAC;IACX,IAAI,EAAE,MAAM,CAAC;IACb,WAAW,CAAC,EAAE,MAAM,CAAC;IACrB,YAAY,EAAE,eAAe,CAAC;IAC9B,UAAU,CAAC,EAAE,MAAM,CAAC;CACvB"}

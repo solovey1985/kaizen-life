@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-functions",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "options": {
+        "cwd": "${workspaceFolder}/functions"
+      },
+      "group": "build",
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "watch-functions",
+      "type": "shell", 
+      "command": "npm",
+      "args": ["run", "build:watch"],
+      "options": {
+        "cwd": "${workspaceFolder}/functions"
+      },
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": "$tsc-watch"
+    },
+    {
+      "label": "start-functions-debug",
+      "type": "shell",
+      "command": "firebase",
+      "args": [
+        "emulators:start",
+        "--only",
+        "functions",
+        "--inspect-functions"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "group": "build",
+      "dependsOn": "build-functions",
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting emulators",
+          "endsPattern": "All emulators ready"
+        }
+      }
+    }
+  ]
+}

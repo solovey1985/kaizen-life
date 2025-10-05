@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Functions Emulator",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/functions/lib/**/*.js"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "localRoot": "${workspaceFolder}/functions",
+      "remoteRoot": "/workspace"
+    },
+    {
+      "name": "Debug Functions with Emulator",
+      "type": "node", 
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/firebase",
+      "args": [
+        "emulators:start",
+        "--only",
+        "functions",
+        "--inspect-functions"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "build-functions"
+    }
+  ]
+}

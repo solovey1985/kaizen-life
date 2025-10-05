@@ -18,3 +18,8 @@ __exportStar(require("./models/actionType"), exports);
 __exportStar(require("./models/user"), exports);
 __exportStar(require("./models/userAction"), exports);
 __exportStar(require("./validators/schemas"), exports);
+__exportStar(require("./models/api/categoryApiModel"), exports);
+__exportStar(require("./models/api/actionApiModel"), exports);
+__exportStar(require("./models/api/actionLogApiModel"), exports);
+__exportStar(require("./models/api/goalApiModel"), exports);
+__exportStar(require("./models/api/data.interfaces"), exports);

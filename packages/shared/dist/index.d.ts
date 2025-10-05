@@ -2,4 +2,9 @@ export * from './models/actionType';
 export * from './models/user';
 export * from './models/userAction';
 export * from './validators/schemas';
+export * from './models/api/categoryApiModel';
+export * from './models/api/actionApiModel';
+export * from './models/api/actionLogApiModel';
+export * from './models/api/goalApiModel';
+export * from './models/api/data.interfaces';
 //# sourceMappingURL=index.d.ts.map

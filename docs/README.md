@@ -22,6 +22,8 @@ This file provides a comprehensive index of all documentation in the KaizenLife 
 | Document | Description | For |
 |----------|-------------|-----|
 | [Angular README](../apps/web/kaizen-web/README.md) | Angular CLI commands and development | Frontend developers |
+| [Debugging Guide](DEBUGGING.md) | Firebase Functions debugging methods | Backend developers |
+| [Environment Setup](../functions/ENVIRONMENT.md) | Functions environment variables | Backend developers |
 | [Copilot Instructions](../.github/copilot-instructions.md) | AI assistant context and guidelines | AI-assisted development |
 
 ## 📱 Component Documentation
