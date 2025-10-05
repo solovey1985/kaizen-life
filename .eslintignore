@@ -1,0 +1,8 @@
+node_modules/
+dist/
+lib/
+*.js
+apps/
+functions/
+packages/**/dist/
+.git/

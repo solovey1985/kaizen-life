@@ -4,17 +4,28 @@
       "port": 5001
     },
     "firestore": {
-      "port": 8080
+      "port": 5100
     },
     "auth": {
       "port": 9099
     },
     "hosting": {
       "port": 5000
-    }
+    },
+    "storage": {
+      "port": 5200
+    },
+    "ui": {
+      "enabled": true,
+      "port": 5600
+    },
+    "singleProjectMode": true
+  },
+    "storage": {
+    "rules": "storage.rules"
   },
   "hosting": {
-    "public": "apps/web",
+    "public": "apps/web/kaizen-web/dist/kaizen-web/browser",
     "rewrites": [
       {
         "source": "/api/**",
@@ -25,5 +36,22 @@
         "destination": "/index.html"
       }
     ]
-  }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+        "npm --prefix \"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ]
 }
